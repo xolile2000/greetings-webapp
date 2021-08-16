@@ -10,4 +10,13 @@ describe("greetings" , function(){
 
        
     });
+    it(' should be able to output a massage which greets in English' , function(){
+        let greet = greetings()
+     
+        greet.greetName("English","Zinhle")
+        assert.equal("Hello Xolile",greet.greetName("English","xolile"));
+ 
+ 
+        
+     });
 });
