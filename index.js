@@ -1,11 +1,22 @@
 const express = require("express")
+const exphbs  = require('express-handlebars');
+const bodyParser = require("body-parser");
+
+
 const app = express();
+app.engine('handlebars', exphbs({ layoutsDir: "views/layouts/" }));
+app.set('view engine', 'handlebars');
 
-app.get("/",function(res,req){
-    res.send("greetings web app")
-});
 
-app.post("/greetings",function(res,req){
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+app.get("/",function(req,res){
+    res.render("index"); 
+})
+
+app.post("/greetings",function(req,res){
 
 });
  
