@@ -18,14 +18,16 @@
     </header>
 
     <section>
-       
+        <form action="/greetings" Method = "POST">
         <span class="error1"> </span> 
-
+       
         <div class="counter-and-input">
+           
             <div class="name-input">
                 <span class="detail">name</span>
-                <input type="text" name="" value="" placeholder="enter name" class="name1">
+                <input type="text" name="enterName" value="" placeholder="enter name" class="name1">
             </div>
+            
             <div class="counter">
                 <h1>counter</h1>
                 <span class="counterClc">0</span>
@@ -40,20 +42,25 @@
         </div>
 
         <div class="greetmebtn">
-            <button class="greetme" type="button" name="button">greet-me!!</button>
+            <button class="greetme" type="submit" name="button">greet-me!!</button>
         </div>
+       
+        
+        </form>
+       
+ <div class="pop-up">
+     {{greetMe}}
+ </div> 
+       
+
         <button class="counterbtn">reset</button>
 
-        <div class="pop-up">
+       
 
         </div>
 
-    
 
-    <script src="greet.ff.js"></script>
-    <script src="greet.js"></script>
-
-
+    </section>
 </body>
 
 
