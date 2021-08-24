@@ -1,5 +1,5 @@
 const express = require("express")
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const bodyParser = require("body-parser");
 const greeting = require("./greetings");
 
@@ -13,33 +13,27 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-app.get("/",function(req,res){
-    res.render("index", {
-        greet:greetings.greetName(),
-        
-    }); 
+app.get("/", function (req, res) {
+    res.render("index",{
+        greetMe: greetings.getMassage()
+    });
 });
 
-app.post("/greetings",function(req,res){
+app.post("/greetings", function (req, res) {
 
-var greetMe = greetings.greetName(
-     
-    req.body.language,
-    req.body.enterName
-    
+    greetings.greetName(
 
+        req.body.language,
+        req.body.enterName
+    );
 
-    
-);
-
-
-
-    res.render('index',{greetMe});
+//   res.render('index', { greetMe });
+        res.redirect("/")
 });
- 
+
 const PORT = process.env.PORT || 3015;
 
-app.listen(PORT,function(){
-    console.log("App started at port:",PORT)
+app.listen(PORT, function () {
+    console.log("App started at port:", PORT)
 });
 

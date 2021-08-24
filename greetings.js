@@ -1,23 +1,23 @@
     module.exports = function greetings(existingNames) {
         var namesGreeted = existingNames || {};
-
+        var massage = ""
         
      
         function greetName(greetme, names) {
            
-            // addUserName(names)
-            // var names = names.charAt(0).toUpperCase() + 
-            // names.slice(1).toLowerCase();
+            addUserName(names)
+            var names = names.charAt(0).toUpperCase() + 
+            names.slice(1).toLowerCase();
             
             if (greetme === "IsiZulu") {
-                return "Sawubona " + names
+                massage = "Sawubona " + names
             }
     
             else if (greetme === "English") {
-                return "Hello " + names
+                massage = "Hello " + names
             }
             else if (greetme === "Italian") {
-                return "ciao " + names
+                massage = "ciao " + names
             }    
     
         }
@@ -35,8 +35,8 @@
         }
         
         function addUserName(name1){
-            // var name1 = name1.charAt(0).toUpperCase() + 
-            // name1.slice(1).toLowerCase();
+            var name1 = name1.charAt(0).toUpperCase() + 
+            name1.slice(1).toLowerCase();
             if(name1){
                 if(namesGreeted[name1] === undefined){
                     namesGreeted[name1] = 0
@@ -57,9 +57,9 @@
          function timeOut (){
              return ""
          }
-        //  function getMassage(){
-        //      return  greetName()
-        //  }
+         function getMassage(){
+             return  massage
+         }
         
     
     
@@ -75,7 +75,7 @@
             remove,
             timeOut,
             addUserName,
-            
+            getMassage
            
             
     
