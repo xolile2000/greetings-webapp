@@ -15,7 +15,8 @@ app.use(bodyParser.json())
 
 app.get("/", function (req, res) {
     res.render("index",{
-        greetMe: greetings.getMassage()
+        greetMe: greetings.getMassage(),
+        counter: greetings.greetingcounter()
     });
 });
 
@@ -27,9 +28,20 @@ app.post("/greetings", function (req, res) {
         req.body.enterName
     );
 
-//   res.render('index', { greetMe });
+
         res.redirect("/")
 });
+
+app.get("/greeted",function(req,res){
+    // greetings.getNames()
+// console.log()
+res.render('greeted',{
+    namelist : Object.keys(greetings.getNames())
+})
+
+});
+
+
 
 const PORT = process.env.PORT || 3015;
 

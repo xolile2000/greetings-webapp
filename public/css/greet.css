@@ -48,7 +48,7 @@ body {
         font-size: medium;
     }
     .counterbtn{
-        font-size:medium;
+        font-size:large;
        margin-top: 10px;
        
        
@@ -56,6 +56,9 @@ body {
     .error1{
         color:red;
         font-size: 20px;
+    }
+    .list {
+        font-size: xx-large;
     }
     /* media query */
     @media screen and (max-width:600px){

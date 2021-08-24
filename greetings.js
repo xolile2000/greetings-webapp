@@ -35,12 +35,15 @@
         }
         
         function addUserName(name1){
-            var name1 = name1.charAt(0).toUpperCase() + 
+            var name = name1.charAt(0).toUpperCase() + 
             name1.slice(1).toLowerCase();
-            if(name1){
-                if(namesGreeted[name1] === undefined){
-                    namesGreeted[name1] = 0
+            if(name){
+                if(namesGreeted[name] === undefined){
+                    namesGreeted[name] = 1
                 } 
+                else{
+                    namesGreeted[name]++
+                }
             }
           
         }

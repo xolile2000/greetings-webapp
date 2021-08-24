@@ -26,11 +26,13 @@
             <div class="name-input">
                 <span class="detail">name</span>
                 <input type="text" name="enterName" value="" placeholder="enter name" class="name1">
+                 
             </div>
+            
             
             <div class="counter">
                 <h1>counter</h1>
-                <span class="counterClc">0</span>
+                <span class="counterClc">{{counter}}</span>
             </div>
         </div>
         
@@ -44,13 +46,14 @@
         <div class="greetmebtn">
             <button class="greetme" type="submit" name="button">greet-me!!</button>
         </div>
+        
        
         
         </form>
-       
- <div class="pop-up">
-     {{greetMe}}
- </div> 
+         <div class="list">
+                 <a href="/greeted"><button type="submit">nameList</button></a>
+            </div>
+         </div> 
        
 
         <button class="counterbtn">reset</button>
@@ -58,6 +61,10 @@
        
 
         </div>
+       
+ <div class="pop-up">
+     {{greetMe}}
+ 
 
 
     </section>
