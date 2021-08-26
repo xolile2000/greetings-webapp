@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg,yellow,green);
+    background: linear-gradient(135deg,pink,red);
     text-align: center;
     box-sizing: border-box;
     
@@ -58,7 +58,10 @@ body {
         font-size: 20px;
     }
     .list {
+        display: inline;
         font-size: xx-large;
+        margin: 30px;
+        
     }
     /* media query */
     @media screen and (max-width:600px){

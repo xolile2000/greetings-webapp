@@ -35,10 +35,18 @@ app.post("/greetings", function (req, res) {
 app.get("/greeted",function(req,res){
     // greetings.getNames()
 // console.log()
-res.render('greeted',{
-    namelist : Object.keys(greetings.getNames())
-})
+res.render('greeted',{namelist : Object.keys(greetings.getNames())})
 
+});
+
+app.get("/counters/:enterName",function(req,res){
+let greetedNames = req.params.enterName
+let counters = greetings.getNames()
+	res.render("counters",{
+      enterName : greetedNames,
+        counter :counters[greetedNames]
+
+    })
 });
 
 

@@ -7,23 +7,10 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Document</title>
 </head>
-
 <body>
-
-    <div class="message">
-
-    <h1>list of greeted names</h1>
-
-<ul>
-    {{#each namelist}}
-  <li> <a href="/counters/{{this}}">{{this}}</a></li>
- {{/each}}
-</ul> 
-
-
-
-</div>
-
+    <h1> how many times a person is greeted</h1>
+    <ul>
+        <li><p>Hello,{{enterName}} has been greeted {{counter}} times</p></li>
+    </ul>
 </body>
-
 </html>
