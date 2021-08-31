@@ -2,6 +2,7 @@ body {
     background: linear-gradient(135deg,pink,#0d1137);
     text-align: center;
     box-sizing: border-box;
+   
     
     
     }
@@ -68,6 +69,9 @@ body {
        
        
     }
+   ul{
+    list-style-type: none; 
+   }
     
     /* media query */
     @media screen and (max-width:600px){
