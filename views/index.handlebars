@@ -19,8 +19,9 @@
 
     <section>
         <form action="/greetings" Method = "POST">
-        <span class="error1"> </span> 
-       
+        {{#if messages.error1}}
+        <span class="error1">{{messages.error1}} </span> 
+       {{/if}}
         <div class="counter-and-input">
            
             <div class="name-input">
