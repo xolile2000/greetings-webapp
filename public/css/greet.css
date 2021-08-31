@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg,pink,red);
+    background: linear-gradient(135deg,pink,#0d1137);
     text-align: center;
     box-sizing: border-box;
     
@@ -63,6 +63,12 @@ body {
         margin: 30px;
         
     }
+    .message {
+        font-size: xx-large;
+       
+       
+    }
+    
     /* media query */
     @media screen and (max-width:600px){
         .radio-language{

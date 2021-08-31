@@ -42,7 +42,6 @@ app.get("/", function (req, res) {
 
 
 app.post("/greetings", function (req, res) {
-    
    
     var name1 = req.body.enterName;
 
@@ -55,7 +54,7 @@ app.post("/greetings", function (req, res) {
 
     }
    
-   
+
 
 
         res.redirect("/")
