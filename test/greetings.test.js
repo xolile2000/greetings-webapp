@@ -5,7 +5,7 @@ describe("greetings" , function(){
        let greet = greetings()
     
        greet.greetName("IsiZulu","xolile")
-       assert.equal("Sawubona Xolile",greet.greetName("IsiZulu","xolile"));
+       assert.equal("Sawubona Xolile",greet.getMassage("IsiZulu","xolile"));
 
 
        
@@ -14,7 +14,7 @@ describe("greetings" , function(){
         let greet = greetings()
      
         greet.greetName("English","Zinhle")
-        assert.equal("Hello Xolile",greet.greetName("English","xolile"));
+        assert.equal('Hello Zinhle',greet.getMassage("Hello","Zinhle"));
  
  
         
@@ -23,7 +23,7 @@ describe("greetings" , function(){
         let greet = greetings()
      
         greet.greetName("Italian","Kamo")
-        assert.equal("ciao Kamo",greet.greetName("Italian","Kamo"));
+        assert.equal("ciao Kamo",greet.getMassage("Italian","Kamo"));
  
  
         
