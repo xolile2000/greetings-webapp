@@ -15,7 +15,7 @@
     <h1>list of greeted names</h1>
 
 <ul>
-    {{#each namelist}}
+    {{#each nameList}}
   <li> <a href="/counters/{{this}}">{{this}}</a></li>
  {{/each}}
 </ul> 
@@ -24,7 +24,7 @@
 
 </div>
 <form>
- <input type="button" value="Go back!" onclick="history.back()">
+ <input class="back" type="button" value="Go back!" onclick="history.back()">
 </form>
 
 </body>

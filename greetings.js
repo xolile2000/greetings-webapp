@@ -1,87 +1,109 @@
-    module.exports = function greetings(existingNames) {
-        var namesGreeted = existingNames || {};
-        var massage = ""
-        
-     
-        function greetName(greetme, names) {
-           
-            addUserName(names)
-            var names = names.charAt(0).toUpperCase() + 
-            names.slice(1).toLowerCase();
-            
-            if (greetme === "IsiZulu") {
-                massage = "Sawubona " + names
+module.exports = function greetings(pool) {
+    var namesGreeted = {};
+    var massage = ""
+
+
+    async function greetName(str) {
+        try {
+            var language = str.language;
+            var name = str.name;
+
+            addUserName(name)
+            // var name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+            var userCheck = await pool.query(`select name from users where name = $1`, [name]);
+            if (userCheck.rowCounter === 0) {
+                await pool.query(`insert into users (name,counter) values ($1,$2)`, [name, 1]);
             }
-    
-            else if (greetme === "English") {
-                massage = "Hello " + names
+            if (language === "IsiZulu") {
+                massage = "Sawubona " + name
             }
-            else if (greetme === "Italian") {
-                massage = "ciao " + names
-            }    
-    
+
+            else if (language === "English") {
+                massage = "Hello " + name
+            }
+            else if (language === "Italian") {
+                massage = "ciao " + name
+            }
+        } catch (err) {
+            throw err
         }
-    
-        function greetErrors(language,name1){
-            if(name1 === undefined){
-                return "Please enter name";
-            }
-             else if(language === null){
-                return "Please select language";
-            }
-            else if(!name1 && !language ){
-                return "Please enter name and select language";
-            }
+    };
+
+
+
+
+
+
+
+
+
+
+
+    function greetErrors(language, name1) {
+        if (name1 === undefined) {
+            return "Please enter name";
         }
-        
-        function addUserName(name1){
-            var name = name1.charAt(0).toUpperCase() + 
-            name1.slice(1).toLowerCase();
-            if(name){
-                if(namesGreeted[name] === undefined){
-                    namesGreeted[name] = 1
-                } 
-                else{
-                    namesGreeted[name]++
-                }
-            }
-          
+        else if (language === null) {
+            return "Please select language";
         }
-        
-        function greetingcounter(){
-            return Object.keys(namesGreeted).length
-        }
-         function getNames(){
-             return namesGreeted
-         }
-         function remove(){
-            localStorage.clear();
-         }
-         function timeOut (){
-             return ""
-         }
-         function getMassage(){
-             return  massage
-         }
-        
-    
-    
-      
-    
-       
-      
-        return {
-            greetName,
-            greetingcounter,
-            greetErrors,
-            getNames,
-            remove,
-            timeOut,
-            addUserName,
-            getMassage
-           
-            
-    
-            
+        else if (!name1 && !language) {
+            return "Please enter name and select language";
         }
     }
+
+    function addUserName(name) {
+        // var name = name1.charAt(0).toUpperCase() +
+        //     name1.slice(1).toLowerCase();
+        if (name) {
+            if (namesGreeted[name] === undefined) {
+                namesGreeted[name] = 1
+            }
+            else {
+                namesGreeted[name]++
+            }
+        }
+
+    }
+
+    async function greetingcounter() {
+        //    const counter = await pool.query('select counter(*) from users');
+        return Object.keys(namesGreeted).length
+    }
+
+    async function getNames() {
+        const greetedNames = await pool.query(`select name from users `);
+        return greetedNames.rows;
+
+    }
+
+    function remove() {
+        localStorage.clear();
+    }
+    function timeOut() {
+        return ""
+    }
+    function getMassage() {
+        return massage
+    }
+
+
+
+
+
+
+
+    return {
+        greetName,
+        greetingcounter,
+        greetErrors,
+        getNames,
+        remove,
+        timeOut,
+        addUserName,
+        getMassage
+
+
+
+
+    };
+};
