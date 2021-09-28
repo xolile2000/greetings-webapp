@@ -2,11 +2,11 @@ const express = require("express")
 const exphbs = require('express-handlebars');
 const bodyParser = require("body-parser");
 const flash = require('express-flash');
-  const session = require('express-session');
-  const pg = require("pg");
+const session = require('express-session');
+const pg = require("pg");
 const greeting = require("./greetings");
 
-
+const { request } = require('express');
 
 const app = express();
 
@@ -48,11 +48,12 @@ const pool = new Pool({
   const greetings = greeting(pool)
 
 
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
     
     res.render("index",{
         greetMe: greetings.getMassage(),
-        counter: greetings.greetingcounter()
+        counter: await  greetings.greetingcounter(),
+      
     });  
 
 });
@@ -64,11 +65,9 @@ app.post("/greetings",  async function (req, res) {
 
   var name1 = req.body.enterName;
   var lang = req.body.language;
- const names = await greetings.greetName({
-   name : name1,
-   language : lang 
- });
-  console.log(names);
+
+  await greetings.greetName(name1, lang);
+
    
     
 
@@ -77,7 +76,9 @@ app.post("/greetings",  async function (req, res) {
     if(!name1 || name1 === undefined ){
         req.flash('error1',"please enter name")
     }else{
-        greetings.greetName(req.body.language,req.body.enterName)
+        greetings.greetName(req.body.language,req.body.enterName);
+        await greetings.addNames(req.body.enterName);
+
 
     }
    
@@ -88,25 +89,35 @@ app.post("/greetings",  async function (req, res) {
 });
 
 
-app.get("/greeted",  function(req,res){
-  // const names = await greetings.getNames();
-  // console.log(names);
+app.get("/greeted", async function(req,res){
+  const names = await greetings.list();
 
-res.render('greeted',{namelist : Object.keys(greetings.getNames())
 
-});
+res.render('greeted',{nameList: names
 
 });
 
-app.get("/counters/:enterName",function(req,res){
+});
+
+app.get("/counters/:enterName", async function(req,res){
 let greetedNames = req.params.enterName
-let counters = greetings.getNames()
-	res.render("counters",{
-      enterName : greetedNames,
-        counter :counters[greetedNames]
+ let counters = await greetings.displayCount(greetedNames)
 
-    })
+//  console.log(greetedNames);
+//  console.log(counters);
+
+	res.render("counters", {
+    enterName : greetedNames,
+    counter :counters
+
+  });
+
 });
+app.get("/removeName",async function(req,res){
+    await greetings.remove();
+
+   res.redirect("/")
+})
 
 
 
