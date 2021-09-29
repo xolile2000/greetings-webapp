@@ -21,9 +21,11 @@
 
         <form action="/greetings" Method="POST">
 
-            {{#if messages.error1}}
+            <div>
+                {{#if messages.error1}}
             <span class="error1">{{messages.error1}} </span>
             {{/if}}
+            </div>
             <div class="counter-and-input">
 
                 <div class="name-input">
@@ -46,20 +48,21 @@
                 <input type="radio" name="language" id="lingustic" value="Italian">Italian
             </div>
 
-            <div class="buttons">
-                <div class="greetmebtn">
+            <div class="greetmebtn">
                 <button class="greetme" type="submit" name="button">greet-me!!</button>
-            </div>
-            <div class="list">
-                <a href="/greeted"><button type="submit">nameList</button></a>
-            </div>
-
-            <a href="removeName" ><button class="counterbtn" type="submit" value ="reset" name = "reset">reset</button></a>
             </div>
 
 
 
         </form>
+        <div class="buttons">
+            
+            <div class="list">
+                <a href="/greeted"><button type="submit">nameList</button></a>
+            </div>
+
+            <a href="removeName" ><button class="counterbtn" type="submit" value ="reset" name = "reset">reset</button></a>
+        </div>
        
         <div class="pop-up">
 

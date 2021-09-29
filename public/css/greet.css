@@ -133,6 +133,11 @@
         border-radius: 10px;
         padding: 75px;
      }
+     .error1{
+        color:red;
+        font-size: 20px;
+        padding-bottom:30px;
+    }
      .counter-and-input{
         display: inline-flex;
         flex-direction: row;
@@ -140,8 +145,7 @@
         padding-bottom: 35px;
     }
     .counter{
-        /* text-align: center; */
-        /* font-size: medium; */
+
         padding-left: 10px;
     }
 
@@ -156,6 +160,10 @@
     }
 
     .buttons a, .buttons button, input{
+        padding: 20px;
+    }
+
+    .greetmebtn button{
         padding: 20px;
     }
 
