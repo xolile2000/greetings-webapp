@@ -1,28 +1,44 @@
 let assert = require("assert");
 let greetings = require("../greetings")
+
+const pg = require("pg");
+const Pool = pg.Pool;
+
+// we are using a special test database for the tests
+ const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/greetings'
+
+const pool = new Pool({
+    connectionString
+});
+beforeEach(async function(){
+   console.log("*****")
+   await pool.query("delete from users;");
+});
+
 describe("greetings" , function(){
+ 
     it(' should be able to output a massage which greets in IsiZulu' , function(){
-       let greet = greetings()
+       let greet = greetings(pool)
     
-       greet.greetName("IsiZulu","xolile")
-       assert.equal("Sawubona Xolile",greet.getMassage("IsiZulu","xolile"));
+       greet.greetName("xolile","IsiZulu")
+       assert.equal("Sawubona Xolile", greet.getMassage("IsiZulu","xolile"));
 
 
        
     });
     it(' should be able to output a massage which greets in English' , function(){
-        let greet = greetings()
+        let greet = greetings(pool)
      
-        greet.greetName("English","Zinhle")
+        greet.greetName("Zinhle","English")
         assert.equal('Hello Zinhle',greet.getMassage("Hello","Zinhle"));
  
  
         
      });
      it(' should be able to output a massage which greets in Italian' , function(){
-        let greet = greetings()
+        let greet = greetings(pool)
      
-        greet.greetName("Italian","Kamo")
+        greet.greetName("Kamo","Italian")
         assert.equal("ciao Kamo",greet.getMassage("Italian","Kamo"));
  
  
@@ -66,50 +82,51 @@ describe("error massages" , function(){
 
       
    });
-   describe("counter" , function(){
-      it(' should be able to count how many names are being entered in the intext box' , function(){
-         let greet = greetings()
+describe("counter" , function(){
+      it(' should be able to count how many names are being entered in the intext box' , async function(){
+         let greet = greetings(pool)
          
       
-        greet.addUserName("xolile")
-        assert.equal(1,greet.greetingcounter())
+       await greet.addNames("xolile")
+        assert.equal(1,await greet.greetingcounter())
          
   
   
          
       });
-      it(' should be able to count how many names are being entered in the intext box' , function(){
-         let greet = greetings()
+      it(' should be able to count how many names are being entered in the intext box' ,async function(){
+         let greet = greetings(pool)
          
-      
-        greet.addUserName("xolile")
-        greet.addUserName("zinhle")
-        assert.equal(2,greet.greetingcounter())
-         
-  
-  
-         
-      });
-      it(' should be able to count how many names are being entered in the intext box' , function(){
-         let greet = greetings()
-         
-      
-        greet.addUserName("xolile")
-        greet.addUserName("zinhle")
-        greet.addUserName("sipho")
-        assert.equal(3,greet.greetingcounter())
+   
+       await greet.addNames("xolile")
+       await greet.addNames("zinhle")
+        assert.equal(2,await greet.greetingcounter())
          
   
   
          
       });
-      it(' should be able to stop counting if a name is repeated' , function(){
-         let greet = greetings()
+      it(' should be able to count how many names are being entered in the intext box' , async function(){
+         let greet = greetings(pool)
          
       
-        greet.addUserName("xolile")
-        greet.addUserName("xolile")
-        assert.equal(1,greet.greetingcounter())
+       await greet.addNames("xolile")
+       await greet.addNames("zinhle")
+       await greet.addNames("sipho")
+        assert.equal(3,await greet.greetingcounter())
+         
+  
+  
+         
+      });
+      it(' should be able to stop counting if a name is repeated' , async function(){
+         let greet = greetings(pool)
+         
+      
+       await greet.addNames("xolile")
+       await greet.addNames("xolile")
+      
+        assert.equal(1,await greet.greetingcounter())
          
   
   
@@ -119,4 +136,8 @@ describe("error massages" , function(){
      
       
 });
+after(function(){
+   pool.end();
+})
+
 });
