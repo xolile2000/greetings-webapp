@@ -5,7 +5,7 @@ const pg = require("pg");
 const Pool = pg.Pool;
 
 // we are using a special test database for the tests
- const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/greetings';
+ const connectionString = process.env.DATABASE_URL || 'postgresql://codex:pg123@localhost:5432/greetings'
 
 const pool = new Pool({
     connectionString
@@ -20,7 +20,7 @@ describe("greetings" , function(){
     it(' should be able to output a massage which greets in IsiZulu' , function(){
        let greet = greetings(pool)
     
-       greet.greetName("amanda","IsiZulu")
+       greet.greetName("xolile","IsiZulu")
        assert.equal("Sawubona Xolile", greet.getMassage("IsiZulu","xolile"));
 
 
