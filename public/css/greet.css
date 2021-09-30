@@ -175,3 +175,26 @@
         display: inline-block;
         padding-left: 15px;
     }
+    .greetmebtn{
+        padding: 30px;
+        margin: 30px;
+        font-size: xx-large;
+        align-items: center;
+    }
+    .pop-up{
+        font-size: xx-large   
+    }
+    
+    .message {
+        font-size: xx-large;
+        text-align: center;
+       
+       
+    }
+   ul{
+    list-style-type: none; 
+   }
+   .back{
+    font-size: x-large;
+    text-align: center; 
+   }
