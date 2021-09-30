@@ -7,6 +7,7 @@ const pg = require("pg");
 const greeting = require("./greetings");
 
 const { request } = require('express');
+const routes = require("./routes");
 
 const app = express();
 
@@ -46,59 +47,19 @@ const pool = new Pool({
   });
 
   const greetings = greeting(pool)
+const greetRoutes = routes(greetings)
+
+app.get("/",greetRoutes.home);
+
+app.post("/greetings",greetRoutes.greet)
+
+app.get("/greeted",greetRoutes.listName);
+
+app.get("/counters/:enterName",greetRoutes.counter);
+
+app.get("/removeName",greetRoutes.reset)
 
 
-app.get("/", async function (req, res) {
-    
-    res.render("index",{
-        greetMe: greetings.getMassage(),
-        counter: await  greetings.greetingcounter(),
-      
-    });  
-
-});
-
-app.post("/greetings",  async function (req, res) {
-
-  var name1 = req.body.enterName;
-  var lang = req.body.language;
-
-  await greetings.greetName(name1, lang);
-
-    if(!name1 || name1 === undefined ){
-        req.flash('error1',"please enter name")
-    }else{
-        greetings.greetName(req.body.language,req.body.enterName);
-        await greetings.addNames(req.body.enterName)
-
-    }
-        res.redirect("/")
-});
-app.get("/greeted", async function(req,res){
-  const names = await greetings.list();
-
-
-res.render('greeted',{nameList: names
-
-});
-
-});
-
-app.get("/counters/:enterName", async function(req,res){
-let greetedNames = req.params.enterName
- let counters = await greetings.displayCount(greetedNames)
-	res.render("counters", {
-    enterName : greetedNames,
-    counter :counters
-
-  });
-
-});
-app.get("/removeName",async function(req,res){
-    await greetings.remove();
-
-   res.redirect("/")
-})
 
 const PORT = process.env.PORT || 3015;
 
