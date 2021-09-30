@@ -1,5 +1,5 @@
 module.exports = function greetings(pool) {
-    var namesGreeted = {};
+    // var namesGreeted = {};
     var massage = ""
 
     function greetName(name, language) {

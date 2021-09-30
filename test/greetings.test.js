@@ -55,33 +55,7 @@ describe("error massages" , function(){
 
       
    });
-   it(' should be able to output a error massage if both language and name are not selected' , function(){
-      let greet = greetings()
-   
-      greet.greetErrors("","")
-       assert.equal('Please enter name and select language',greet.greetErrors("",""));
-
-
-      
-   });
-   it(' should be able to output a error massage if a language is not selected' , function(){
-      let greet = greetings()
-   
-      greet.greetErrors(null,"Xolile")
-       assert.equal("Please select language",greet.greetErrors(null,"Xolile"));
-
-
-      
-   });
-   it(' should be able to output a error massage if both language and name are not selected' , function(){
-      let greet = greetings()
-   
-      greet.greetErrors("","")
-       assert.equal('Please enter name and select language',greet.greetErrors("",""));
-
-
-      
-   });
+  
 describe("counter" , function(){
       it(' should be able to count how many names are being entered in the intext box' , async function(){
          let greet = greetings(pool)

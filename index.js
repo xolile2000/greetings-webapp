@@ -57,9 +57,6 @@ app.get("/", async function (req, res) {
     });  
 
 });
-    
-   
-
 
 app.post("/greetings",  async function (req, res) {
 
@@ -68,27 +65,15 @@ app.post("/greetings",  async function (req, res) {
 
   await greetings.greetName(name1, lang);
 
-   
-    
-
-    
-
     if(!name1 || name1 === undefined ){
         req.flash('error1',"please enter name")
     }else{
         greetings.greetName(req.body.language,req.body.enterName);
-        await greetings.addNames(req.body.enterName);
-
+        await greetings.addNames(req.body.enterName)
 
     }
-   
-
-
-
         res.redirect("/")
 });
-
-
 app.get("/greeted", async function(req,res){
   const names = await greetings.list();
 
@@ -102,10 +87,6 @@ res.render('greeted',{nameList: names
 app.get("/counters/:enterName", async function(req,res){
 let greetedNames = req.params.enterName
  let counters = await greetings.displayCount(greetedNames)
-
-//  console.log(greetedNames);
-//  console.log(counters);
-
 	res.render("counters", {
     enterName : greetedNames,
     counter :counters
@@ -118,8 +99,6 @@ app.get("/removeName",async function(req,res){
 
    res.redirect("/")
 })
-
-
 
 const PORT = process.env.PORT || 3015;
 
