@@ -106,6 +106,27 @@ describe("counter" , function(){
   
          
       });
+      describe(" clear counter" , function(){
+         it(' should  delete counter' , async function(){
+            let greet = greetings(pool);
+           
+    
+            
+           await pool.query(`delete  from users`);
+            
+            
+            assert.equal('',await greet.remove());
+
+            
+     
+     
+            
+         });
+      });
+     
+      
+   
+    
     
      
       
