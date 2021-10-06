@@ -4,14 +4,14 @@ module.exports = function greetings(pool) {
 
     function greetName(name, language) {
         let firstName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-        if (language === "IsiZulu" ) {
+        if (language === "IsiZulu" && firstName) {
             massage = "Sawubona " + firstName
         }
 
-        else if (language === "English" ) {
+        else if (language === "English" && firstName) {
             massage = "Hello " + firstName
         }
-        else if (language === "Italian" ) {
+        else if (language === "Italian" && firstName) {
             massage = "ciao " + firstName
         }
 
@@ -31,7 +31,7 @@ module.exports = function greetings(pool) {
     async function greetingcounter() {
            let counter = await pool.query('select counter from users');
            return counter.rowCount
-        // return Object.keys(namesGreeted).length
+       
     }
 
     async function addNames(name) {

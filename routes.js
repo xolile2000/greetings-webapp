@@ -13,12 +13,12 @@ module.exports = function routes(greetings){
 
       var name1 = req.body.enterName;
       var lang = req.body.language;
-    
+      
       await greetings.greetName(name1, lang);
     
       if(!name1 || name1 === undefined ){
         req.flash('error1',"please enter name")
-       
+     
 
       }else if(!lang && name1){
         req.flash('error1',"please select language")
