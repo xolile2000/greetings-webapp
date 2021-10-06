@@ -5,7 +5,6 @@ const flash = require('express-flash');
 const session = require('express-session');
 const pg = require("pg");
 const greeting = require("./greetings");
-
 const { request } = require('express');
 const routes = require("./routes");
 

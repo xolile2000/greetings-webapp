@@ -1,17 +1,17 @@
 module.exports = function greetings(pool) {
-    // var namesGreeted = {};
+    
     var massage = ""
 
     function greetName(name, language) {
         let firstName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-        if (language === "IsiZulu" && firstName!== "") {
+        if (language === "IsiZulu" ) {
             massage = "Sawubona " + firstName
         }
 
-        else if (language === "English" && firstName!== "") {
+        else if (language === "English" ) {
             massage = "Hello " + firstName
         }
-        else if (language === "Italian" && firstName!== "") {
+        else if (language === "Italian" ) {
             massage = "ciao " + firstName
         }
 
@@ -63,8 +63,13 @@ module.exports = function greetings(pool) {
     }
     async function displayCount(names){
         let countName = await pool.query(`select name,counter from users where name = $1`,[names]);
-        let rowCount = countName.rows
-        return rowCount[0].counter
+        let rowCount = countName.rows[0]
+        if (rowCount && rowCount.counter) {
+            return rowCount.counter
+        } else {
+            return 0;
+        }
+       // return (rowCount && rowCount.counter) ? rowCount.counter ? true ? 0:;
     }
 
 

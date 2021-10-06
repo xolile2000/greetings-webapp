@@ -1,4 +1,3 @@
-
 module.exports = function routes(greetings){
     
   async function home (req, res) {
@@ -15,20 +14,20 @@ module.exports = function routes(greetings){
       var lang = req.body.language;
     
       await greetings.greetName(name1, lang);
-    
-      if(!name1 || name1 === undefined ){
-        req.flash('error1',"please enter name")
-       
-
-      }else if(!lang && name1){
-        req.flash('error1',"please select language")
-        
+     
+        if(!name1 || name1 === undefined ){
+            req.flash('error1',"please enter name")
            
-      
-          }else{
-          greetings.greetName(req.body.language,req.body.enterName);
-          await greetings.addNames(req.body.enterName)
-      }
+
+          }else if(!lang && name1){
+            req.flash('error1',"please select language")
+            
+               
+          
+              }else{
+              greetings.greetName(req.body.language,req.body.enterName);
+              await greetings.addNames(req.body.enterName)
+          }
             res.redirect("/")
     };
   
