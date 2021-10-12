@@ -1,5 +1,5 @@
 module.exports = function greetings(pool) {
-    
+
     var massage = ""
 
     function greetName(name, language) {
@@ -28,10 +28,10 @@ module.exports = function greetings(pool) {
         }
     }
 
-    async function greetingcounter() {
-           let counter = await pool.query('select counter from users');
-           return counter.rowCount
-       
+    const greetingcounter =  async() => {
+        let counter = await pool.query('select counter from users');
+        return counter.rowCount
+
     }
 
     async function addNames(name) {
@@ -39,44 +39,42 @@ module.exports = function greetings(pool) {
         let userCheck = await pool.query(`select name from users where name = $1`, [firstName]);
         if (userCheck.rows.length === 0) {
             await pool.query(`insert into users (name,counter) values ($1,$2)`, [firstName, 1]);
-        }else{
+        } else {
             await pool.query(`update users set counter = counter + 1 where name = $1`, [firstName]);
         }
-       
-
     }
-    async function list(){
+   const list =  async () => {
         var namelist = await pool.query(`select * from users`);
         return namelist.rows
     }
 
-    async function remove() {
+     const remove = async () =>  {
         let remove = await pool.query(`delete  from users`);
         return remove.rows
     }
 
-    function timeOut() {
+    const timeOut = () => {
         return ""
     }
-    function getMassage() {
-        return massage
-    }
-    async function displayCount(names){
-        let countName = await pool.query(`select name,counter from users where name = $1`,[names]);
+
+    const getMassage = () => {return massage}
+    
+    async function displayCount(names) {
+        let firstName = names.charAt(0).toUpperCase() + names.slice(1).toLowerCase();
+        let countName = await pool.query(`select counter from users where name = $1`, [firstName]);
         let rowCount = countName.rows[0]
         if (rowCount && rowCount.counter) {
             return rowCount.counter
         } else {
-            return 0;
+            return countName.rowCount
         }
-       // return (rowCount && rowCount.counter) ? rowCount.counter ? true ? 0:;
     }
 
-
-
-
-
-
+    const duplicate = async name => {
+        let firstName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        let userCheck = await pool.query(`select name from users where name = $1`, [firstName]);
+        return userCheck.rowCount
+    }
 
     return {
         greetName,
@@ -87,10 +85,7 @@ module.exports = function greetings(pool) {
         timeOut,
         getMassage,
         list,
-        displayCount
-
-
-
-
+        displayCount,
+        duplicate
     };
 };

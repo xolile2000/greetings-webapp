@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="greet.css">
     <title>greetings</title>
+
 <body>
-     <section class="login">
-    {{{body}}}
-     </section>
-     
-     <script>
-     document.addEventListener('DOMContentLoaded',function(){
-    var errors = document.querySelector(".error1");
-    
+    <section class="login">
+        {{{body}}}
+    </section>
 
-if(errors.innerHTML  !== ' ' )  {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+             var errors = document.querySelector(".error1");
+            var message = document.querySelector(".pop-up");
+            var success1 = document.querySelector(".success");
+            if (message !== ' ' || errors !== " " || success1 !== " " ) {
 
-setTimeout(function () {
-    errors.innerHTML = ' ';
-  
+                setTimeout(function () {
+                     success1.innerHTML = " ";
+                    message.innerHTML = ' ';
+                    errors.innerHTML = " ";
+                   
+                }, 3000);
+            }
+        });
+    </script>
 
-}, 3000);
-}
-});
-     </script>
-     
 </body>
-</html>
 
+</html>
