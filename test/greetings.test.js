@@ -107,12 +107,14 @@ describe("counter" , function(){
          
       });
       describe(" clear counter" , function(){
-         it(' should  delete counter' , async function(){
+         it(' should clear the cunter if resert button is clicked' , async function(){
+
             let greet = greetings(pool);
-           
-    
+            await greet.addNames("amanda")
+            await greet.addNames("xolile")
             
-           await pool.query(`delete  from users`);
+            
+         //   await pool.query(`delete  from users`);
             
             
             assert.equal('',await greet.remove());
