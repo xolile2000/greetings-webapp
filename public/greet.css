@@ -29,17 +29,20 @@
     }
      .counter-and-input{
         display: inline-flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         padding-bottom: 35px;
     }
     .counter{
 
         padding-left: 10px;
+        margin-top: 20px;
+       
     }
 
     .radio-language{
         padding-bottom: 35px;
+       
 
     }
 
@@ -51,7 +54,7 @@
     .btn, button{
         padding: 20px;
         border-radius: 30px;
-       
+        
 
     }
 
@@ -60,9 +63,11 @@
     }
 
      .list, .removeName{
-        display: inline-block;
+        /* display: flex; */
+        display: inline-grid;
         padding-left: 15px;
         align-items: center;
+       
         
     }
     .greetmebtn{
@@ -91,7 +96,7 @@
    .success {
        color:navy;
    }
-   @media screen and (min-width: 600px) {
+   @media screen and (min-width: 450px) {
     .radio-language{
         display:flex;
         text-align: left;
@@ -119,9 +124,16 @@
     .btn, button{
         padding: 20px;
         border-radius: 30px;
-       
+        
 
     }
+    .counter-and-input{
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-bottom: 35px;
+    }
+    
 }
 
 
